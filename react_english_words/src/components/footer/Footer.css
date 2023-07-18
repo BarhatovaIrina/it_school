@@ -1,0 +1,17 @@
+.footer {
+    background: rgb(195, 254, 188);
+    margin: 0;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    opacity: 0.7;
+}
+
+.footer-a {
+    color: rgb(39, 54, 43);
+
+}
+
+.footer-text {
+    margin: 5px;
+}
