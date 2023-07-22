@@ -1,0 +1,26 @@
+[
+    {
+        "price": 300,
+        "speed": 10,
+        "color": "#2ccddb",
+        "isSelected": false
+    },
+    {
+        "price": 450,
+        "speed": 50,
+        "color": "#3ca651",
+        "isSelected": false
+    },
+    {
+        "price": 550,
+        "speed": 100,
+        "color": "red",
+        "isSelected": true
+    },
+    {
+        "price": 1000,
+        "speed": 200,
+        "color": "black",
+        "isSelected": false
+    }
+]
