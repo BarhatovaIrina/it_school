@@ -2,25 +2,21 @@
     {
         "price": 300,
         "speed": 10,
-        "color": "#2ccddb",
-        "isSelected": false
+        "color": "#2ccddb"
     },
     {
         "price": 450,
         "speed": 50,
-        "color": "#3ca651",
-        "isSelected": false
+        "color": "#3ca651"
     },
     {
         "price": 550,
         "speed": 100,
-        "color": "red",
-        "isSelected": true
+        "color": "red"
     },
     {
         "price": 1000,
         "speed": 200,
-        "color": "black",
-        "isSelected": false
+        "color": "black"
     }
 ]
