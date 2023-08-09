@@ -1,12 +1,12 @@
 import words from './data.json';
 import RowWord from './RowWord';
 import Word from './Word';
-import './Words.css';
-export default function Words(props) {
-    // const { } = props;
+import './Words.scss';
+export default function Words() {
+
     return (
         <div className='words_page'>
-            <Word english='apple' />
+            <Word english='apple' transcription='qq' russian='rrr' />
             <div className='table_words'>
                 {words.map((item, index) =>
                     <RowWord key={index} english={item.english} transcription={item.transcription} russian={item.russian} />
