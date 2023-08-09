@@ -8,7 +8,7 @@ function App() {
       {/* <h2>Task React - 2 </h2>
       <HeroesList></HeroesList> */}
 
-      <h2>Task React - 3</h2>
+      <h2>Task React - 3, 4</h2>
       <TariffList />
     </div>
   );
