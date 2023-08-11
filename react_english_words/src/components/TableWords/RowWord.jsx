@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './Words.scss';
+import './TableWords.scss';
 export default function RowWord(props) {
     const { english, transcription } = props;
 

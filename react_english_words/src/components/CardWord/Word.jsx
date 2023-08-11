@@ -1,12 +1,13 @@
-import './Words.scss';
+import './CardWord.scss';
 import React, { useState } from 'react';
 export default function Word(props) {
     const { english, transcription, russian } = props;
-    const [checked, setChecked] = useState(props.checked || false);
+    let [checked, setChecked] = useState(props.checked || false);
 
     const handleChecked = () => {
-        setChecked(true);
+        setChecked(!checked);
     }
+
     return (
         <div className='word_card'>
             <p className='word_card__english'>{english}</p>
