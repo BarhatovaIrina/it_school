@@ -7,9 +7,13 @@ export default function TableWords() {
         <div className='words_page'>
 
             <div className='table_words'>
-                {words.map((item, index) =>
-                    <RowWord key={index} english={item.english} transcription={item.transcription} russian={item.russian} />
-                )
+                {
+                    words.filter((item) => {
+                        return item.english.includes('t')
+
+                    }).map((item, index) =>
+                        <RowWord key={index} english={item.english} transcription={item.transcription} russian={item.russian} />
+                    )
                 }
             </div>
         </div >
