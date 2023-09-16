@@ -8,8 +8,8 @@ export default function Header(props) {
                 <Link className='title' to="/">Translate word, please!</Link>
             </div>
             <nav>
-                <NavLink className="nav-a" to="/game">Word's Training</NavLink>
-                <NavLink className="nav-a" to="/table">Table of words</NavLink>
+                <NavLink className="nav-a" to="/game">Тренажер слов</NavLink>
+                <NavLink className="nav-a" to="/table">Таблица слов</NavLink>
             </nav>
 
         </div>
