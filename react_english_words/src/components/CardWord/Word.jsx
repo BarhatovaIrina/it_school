@@ -3,6 +3,7 @@ import './CardWord.scss';
 export default function Word(props) {
     const { english, transcription, russian, checked, toggleChecked } = props;
 
+    
     return (
         <div className='word_card'>
             <p className='word_card__english'>{english}</p>
