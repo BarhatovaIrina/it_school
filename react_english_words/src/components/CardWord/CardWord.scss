@@ -1,6 +1,8 @@
 .words_page {
     width: 90%;
     margin: 10px auto;
+    // margin: 10px auto;
+    // margin-top: 200px;
 }
 
 .slider {
@@ -36,10 +38,21 @@
     }
 
     &__translate {
+        font-size: 14px;
         background: rgb(195, 254, 188);
         border: 0;
         padding: 10px 30px;
         margin: 10px 0;
+        box-sizing: border-box;
+
+        &__rus {
+            font-size: 14px;
+            box-sizing: border-box;
+            padding: 10px 30px;
+            margin: 10px 0;
+            background: white;
+            border: 0;
+        }
     }
 
     &__translate:hover {
