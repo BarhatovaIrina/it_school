@@ -37,6 +37,10 @@
         text-align: center;
     }
 
+    .empty {
+        border: 1px solid red;
+    }
+
     .buttons {
         & button {
             border: 0;
