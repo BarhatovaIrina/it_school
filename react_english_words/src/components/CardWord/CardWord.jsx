@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import './CardWord.scss';
 import Word from './Word';
-import data from '../data.json';
-import useLocalStorage from '../CustomHooks/useLocalStorage';
+// import data from '../data.json';
+import UseLocalStorage from '../CustomHooks/UseLocalStorage';
+import { useContext } from 'react';
+import { ApiContext } from '../../context/ApiContext';
 
 export default function Words() {
-
-    let [index, setIndex] = useState(data.index || 0);
+    const { words } = useContext(ApiContext);
+    let [index, setIndex] = useState(words.index || 0);
     const [checked, setChecked] = useState(false);
-
-    const [countWordsLearned, setCountWordsLearned] = useLocalStorage('countWordsLearned', 0); //сохраняем и используем кол-во слов из localStorage
+    const [countWordsLearned, setCountWordsLearned] = UseLocalStorage('countWordsLearned', 0); //сохраняем и используем кол-во слов из localStorage
 
     const toggleChecked = () => {
         setChecked(!checked);
@@ -18,7 +19,7 @@ export default function Words() {
     const NextWord = () => {
         index++;
         setChecked(false);
-        if (index === data.length) {
+        if (index === words.length) {
             index = 0;
         }
         setIndex(index);
@@ -27,9 +28,12 @@ export default function Words() {
         index--;
         setChecked(false);
         if (index === -1) {
-            index = data.length - 1;
+            index = words.length - 1;
         }
         setIndex(index);
+    }
+    if (!words) {
+        return <div>Loading....</div>;
     }
 
     return (
@@ -37,9 +41,9 @@ export default function Words() {
             <p className='leaned'>Количество изученных слов: {countWordsLearned}</p>
             <div className='slider' >
                 <Word
-                    english={data[index].english}
-                    transcription={data[index].transcription}
-                    russian={data[index].russian}
+                    english={words[index].english}
+                    transcription={words[index].transcription}
+                    russian={words[index].russian}
                     checked={checked}
                     toggleChecked={toggleChecked} />
                 <div className='slider__buttons'>
@@ -48,7 +52,7 @@ export default function Words() {
                 </div>
 
             </div>
-            <div className='counter'>{`${index + 1} / ${data.length}`}</div>
+            <div className='counter'>{`${index + 1} / ${words.length}`}</div>
         </div >
     );
 }

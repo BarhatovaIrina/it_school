@@ -1,18 +1,26 @@
-import words from '../data.json';
+// import words from '../data.json';
 import RowWord from './RowWord';
-import './TableWords.scss';
+// import './TableWords.scss';
+import { useContext } from 'react';
+import { ApiContext } from '../../context/ApiContext';
+
 export default function TableWords() {
+    const { words } = useContext(ApiContext);
 
     return (
         <div className='words_page'>
 
             <div className='table_words'>
                 {
-                    words.filter((item) => {
-                        return item.english.includes('t')
+                    /// ========sort by symbol=========
+                    // words.filter((item) => {
+                    //     return item.english.includes('t')
 
-                    }).map((item, index) =>
-                        <RowWord key={index} english={item.english} transcription={item.transcription} russian={item.russian} />
+                    // }).map((item, index) =>
+                    //     <RowWord key={item.id} english={item.english} transcription={item.transcription} russian={item.russian} />
+                    // )
+                    words.map((item) =>
+                        <RowWord key={item.id} id={item.id} english={item.english} transcription={item.transcription} russian={item.russian} />
                     )
                 }
             </div>

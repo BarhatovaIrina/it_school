@@ -11,6 +11,7 @@ import TableWords from './components/TableWords/TableWords';
 import CardWord from './components/CardWord/CardWord';
 import Error from './pages/Error';
 import Home from './pages/Home';
+import FormWord from './components/FormWord/FormWord';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Routes>
             <Route path="/table" element={<TableWords />}></Route>
             <Route path="/game" element={<CardWord />}> </Route>
+            <Route path="/add" element={<FormWord />}></Route>
             <Route path="/" element={<Home />}></Route>
             <Route path="*" element={<Error />}></Route>
           </Routes>

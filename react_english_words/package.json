@@ -2,6 +2,9 @@
   "name": "react_english_words",
   "version": "0.1.0",
   "private": true,
+  "config": {
+    "proxy": "http://itgirlschool.justmakeit.ru"
+  },
   "dependencies": {
     "@mui/material": "^5.14.10",
     "@testing-library/jest-dom": "^5.16.5",
