@@ -11,26 +11,31 @@ import TableWords from './components/TableWords/TableWords';
 import CardWord from './components/CardWord/CardWord';
 import Error from './pages/Error';
 import Home from './pages/Home';
+import FormWord from './components/FormWord/FormWord';
+import { observer, inject } from 'mobx-react';
+// import store from './store/WordsStore';
 
-function App() {
+const App = inject('store')(observer(({ store }) => {
+
   return (
     <Router>
       <div className="App">
         <Header />
-        {/* <div className='main'> */}
+
         <main className='main'>
           <Routes>
             <Route path="/table" element={<TableWords />}></Route>
             <Route path="/game" element={<CardWord />}> </Route>
+            <Route path="/add" element={<FormWord />}></Route>
             <Route path="/" element={<Home />}></Route>
             <Route path="*" element={<Error />}></Route>
           </Routes>
         </main>
-        {/* </div> */}
+
         <Footer />
       </div>
     </Router>
   );
-}
+}))
 
 export default App;

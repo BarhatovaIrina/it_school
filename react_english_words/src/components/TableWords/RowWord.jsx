@@ -1,13 +1,19 @@
 import { useState } from 'react';
 import './TableWords.scss';
 import ModalComponent from '../CustomizedDialogs/ModalComponent';
+import { observer } from 'mobx-react';
+import store from '../../store/WordsStore';
 
-export default function RowWord(props) {
-    const { english, transcription, russian } = props;
+const RowWord = observer((props) => {
+    const { english, transcription, russian, id } = props;
 
     const [edited, setEdit] = useState(props.edited || false);
     const handleEdit = () => {
         setEdit(!edited);
+    }
+    const handleDelete = () => {
+        console.log('del ' + id)
+        store.deleteWord(id);
     }
 
     const [modalState, setModalState] = useState({
@@ -43,20 +49,26 @@ export default function RowWord(props) {
         setFormState({ ...formState, [name]: value });
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleUpdate = () => {
         if (formState.russian.trim() === '' || formState.transcription.trim() === '' || formState.english.trim() === '') {
             setFormState({ ...formState, isValid: false });
             setModalState({ isShow: true, key: modalState.key + 1, text: 'Все поля должны быть заполнены.' });
         } else {
             setFormState({ ...formState, isValid: true });
+            const newData = {
+                'id': id,
+                'english': formState.english,
+                'russian': formState.russian,
+                'transcription': formState.transcription
+            }
+            console.log('upd ' + id)
+            store.updateWord(newData);
             setEdit(!edited);
             setModalState({ isShow: false, key: modalState.key + 1, text: 'Все поля должны быть заполнены.' });
         }
     }
 
     if (edited) {
-        console.log('data is saved');
         console.log(formState);
 
         return (
@@ -65,7 +77,7 @@ export default function RowWord(props) {
                 <input className={formState.transcription.trim() === '' && !formState.isValid ? 'empty transcription' : 'transcription'} type="text" name="transcription" value={formState.transcription} onChange={handleEditParams} onBlur={handleValid} />
                 <input className={formState.russian.trim() === '' && !formState.isValid ? 'empty rus' : 'rus'} type="text" name="russian" value={formState.russian} onChange={handleEditParams} onBlur={handleValid} />
                 <span className="buttons">
-                    <button onClick={handleSubmit}><img src="./assets/images/checked.png" alt="go" /></button>
+                    <button onClick={handleUpdate}><img src="./assets/images/checked.png" alt="go" /></button>
                     <button onClick={handleEdit}><img src="./assets/images/cancel.png" alt="cancel" /></button>
 
                 </span>
@@ -82,11 +94,13 @@ export default function RowWord(props) {
                 <span className="rus">{russian}</span>
                 <span className="buttons">
                     <button onClick={handleEdit}><img src="./assets/images/edit.png" alt="edit" /></button>
-                    <button onSubmit={handleSubmit}><img src="./assets/images/delete.png" alt="delete" /></button>
+                    <button onClick={handleDelete}><img src="./assets/images/delete.png" alt="delete" /></button>
                 </span>
             </div>
         )
     }
 }
+);
+export default RowWord;
 
 
