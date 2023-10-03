@@ -1,24 +1,29 @@
-import { action, observable } from 'mobx';
+import { action, makeAutoObservable, runInAction } from 'mobx';
 
 class WordsStore {
-    @observable words = [];
+    words = [];
     isLoading = false;
-    // isLoaded = false;
+    constructor() {
+        makeAutoObservable(this);
+    }
 
     @action async getWords() {
         this.isLoading = true;
         try {
             const response = await fetch('http://itgirlschool.justmakeit.ru/api/words');
             const data = await response.json();
-            this.words = data;
-            // this.isLoaded = true;
-            // console.log(this.words);
-            this.isLoading = false;
+            runInAction(() => {
+                this.words = data;
+                this.isLoading = false;
+            })
+
         }
         catch (error) {
             console.error('Ошибка при загрузке данных!')
-            // this.isLoaded = false;
-            this.isLoading = false;
+            runInAction(() => {
+                this.isLoading = false;
+            })
+
         }
         finally {
             this.isLoading = false;
@@ -32,7 +37,6 @@ class WordsStore {
             method: 'POST',
             body: JSON.stringify(
                 {
-                    // "id": word.id,
                     "english": word.english,
                     "transcription": word.transcription,
                     "russian": word.russian,
@@ -43,9 +47,12 @@ class WordsStore {
             }
         })
             .then((response) => {
-                response.json()
-                this.words.push(word);
-                this.isLoading = false;
+                runInAction(() => {
+                    response.json()
+                    this.words.push(word);
+                    this.isLoading = false;
+                })
+
             })
             .catch((error) => {
                 console.error(error);
@@ -66,7 +73,9 @@ class WordsStore {
             })
             .catch((error) => {
                 console.error(error);
-                this.isLoading = false;
+                runInAction(() => {
+                    this.isLoading = false;
+                })
             });
     }
 
@@ -92,19 +101,24 @@ class WordsStore {
                 return response.json();
             })
             .then((data) => {
-                this.words = this.words.map((item) => {
-                    if (item.id === data.id) {
-                        return data;
-                    } else {
-                        return item;
-                    }
-                });
-                console.log(this.words);
-                this.isLoading = false;
+                runInAction(() => {
+                    this.words = this.words.map((item) => {
+                        if (item.id === data.id) {
+                            return data;
+                        } else {
+                            return item;
+                        }
+                    });
+                    console.log(this.words);
+                    this.isLoading = false;
+                })
+
             })
             .catch((error) => {
                 console.error(error);
-                this.isLoading = false;
+                runInAction(() => {
+                    this.isLoading = false;
+                })
             });
     }
 

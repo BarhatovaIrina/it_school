@@ -11,8 +11,8 @@ const TableWords = observer(() => {
         store.getWords();
     }, [])
 
-    // if (store.isLoading)
-    //     return <h1>Loading....</h1>
+    if (store.isLoading)
+        return <h1>Loading....</h1>
 
     return (
         <div className='words_page'>
