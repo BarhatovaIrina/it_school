@@ -13,7 +13,6 @@ import Error from './pages/Error';
 import Home from './pages/Home';
 import FormWord from './components/FormWord/FormWord';
 import { observer, inject } from 'mobx-react';
-// import store from './store/WordsStore';
 
 const App = inject('store')(observer(({ store }) => {
 
