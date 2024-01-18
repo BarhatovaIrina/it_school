@@ -10,6 +10,7 @@ export default function Header(props) {
             <nav>
                 <NavLink className="nav-a" to="/game">Тренажер слов</NavLink>
                 <NavLink className="nav-a" to="/table">Таблица слов</NavLink>
+                <NavLink className="nav-a" to="/add">Добавить новое слово</NavLink>
             </nav>
 
         </div>

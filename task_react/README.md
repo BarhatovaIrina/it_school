@@ -1,1 +1,0 @@
-This is REACT-project is developed in ItGilrSchool
